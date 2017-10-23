@@ -1,4 +1,4 @@
-package com.example.gebruiker.parceltracer.adapters;
+package com.example.gebruiker.parceltracer.view.adapters;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +9,6 @@ import com.example.gebruiker.parceltracer.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-/**
- * Created by Gebruiker on 19/10/2017.
- */
 
 public class ParcelItemAdapter extends BaseAdapter {
     @Override
@@ -39,6 +35,7 @@ public class ParcelItemAdapter extends BaseAdapter {
         else{
 
         }
+        return null;
     }
 
     static class ParcelItemHolder {
