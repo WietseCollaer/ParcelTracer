@@ -1,11 +1,55 @@
 package com.example.gebruiker.parceltracer.model;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class Checkpoint {
+    /** Unique code of each courier */
+    @SerializedName("slug")
+    @Expose
+    private String slug;
+
+    /** City name of the checkpoint (if any) */
+    @SerializedName("city")
+    @Expose
+    private String city;
+
     /** Date and time of the tracking created */
+    @SerializedName("created_at")
+    @Expose
     private String createdAt;
+
+    /** Location info (city - country) */
+    @SerializedName("location")
+    @Expose(serialize = false, deserialize = false)
+    private String location;
+
+    /** Country name of the checkpoint, may also contain other location info */
+    @SerializedName("country_name")
+    @Expose
+    private String countryName;
+
+    /** Checkpoint message */
+    @SerializedName("message")
+    @Expose
+    private String message;
+
+    /** Country ISO Alpha-3 (three letters) of the checkpoint */
+    @SerializedName("country_iso3")
+    @Expose
+    private String countryISO3;
+
+    /** Status of the checkpoint */
+    @SerializedName("tag")
+    @Expose
+    private String tag;
+
+    /** Status of the checkpoint */
+    @SerializedName("subtag")
+    @Expose(serialize = false, deserialize = false)
+    private String subtag;
 
     /** Date and time of the checkpoint, provided by courier. Value may be:
      * Empty String,
@@ -13,131 +57,126 @@ public class Checkpoint {
      * YYYY-MM-DDTHH:MM:SS, or
      * YYYY-MM-DDTHH:MM:SS+TIMEZONE
      */
+    @SerializedName("checkpoint_time")
+    @Expose
     private String checkpointTime;
 
-    /** City name of the checkpoint (if any) */
-    private String city;
-
-    /** ZIP Code of the checkpoint (if any) */
-    private String zip;
+    /** Location coordinates */
+    @SerializedName("coordinates")
+    @Expose
+    private List<String> coordinates;
 
     /** State name of the checkpoint (if any) */
+    @SerializedName("state")
+    @Expose
     private String state;
 
-    /** Country ISO Alpha-3 (three letters) of the checkpoint */
-    private ISO3Country countryISO3;
+    /** ZIP Code of the checkpoint (if any) */
+    @SerializedName("zip")
+    @Expose
+    private String zip;
 
-    /** Country name of the checkpoint, may also contain other location info */
-    private String countryName;
-
-    /** Checkpoint message */
-    private String message;
-
-    /** Status of the checkpoint */
-    private String tag;
-
-    /**
-     * Constructor: creates a Checkpoint from a JSONObject with the information of the Checkpoint.
-     *
-     * @param checkpointJSON A JSONObject with information of the Checkpoint
-     * @throws JSONException
-     */
-    public Checkpoint(JSONObject checkpointJSON) throws JSONException {
-        createdAt = checkpointJSON.isNull("created_at") ? "" : checkpointJSON.getString("created_at");
-        checkpointTime = checkpointJSON.isNull("checkpoint_time") ? "" : checkpointJSON.getString("checkpoint_time");
-        city = checkpointJSON.isNull("city") ? "" : checkpointJSON.getString("city");
-        zip = checkpointJSON.isNull("zip") ? "" : checkpointJSON.getString("zip");
-        state = checkpointJSON.isNull("state") ? "" : checkpointJSON.getString("state");
-        countryISO3 = checkpointJSON.isNull("country_iso3") ? null : ISO3Country.valueOf(checkpointJSON.getString("country_iso3"));
-        countryName = checkpointJSON.isNull("country_name") ? "" : checkpointJSON.getString("country_name");
-        message = checkpointJSON.isNull("message") ? "" : checkpointJSON.getString("message");
-        tag = checkpointJSON.isNull("tag") ? "" : checkpointJSON.getString("tag");
+    public String getSlug() {
+        return slug;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCheckpointTime(String checkpointTime) {
-        this.checkpointTime = checkpointTime;
-    }
-
-    public String getCheckpointTime() {
-        return checkpointTime;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getZip() {
-        return zip;
+    public String getCreatedAt() {
+        return createdAt;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public String getState() {
-        return state;
+    public String getLocation() {
+        return location;
     }
 
-    public void setCountryISO3(ISO3Country countryISO3) {
-        this.countryISO3 = countryISO3;
-    }
-
-    public ISO3Country getCountryISO3() {
-        return countryISO3;
-    }
-
-    public void setCountryName(String countryName) {
-        this.countryName = countryName;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getCountryName() {
         return countryName;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getCountryISO3() {
+        return countryISO3;
+    }
+
+    public void setCountryISO3(String countryISO3) {
+        this.countryISO3 = countryISO3;
     }
 
     public String getTag() {
         return tag;
     }
 
-    @Override
-    public String toString() {
-        return "Checkpoint{" +
-                "createdAt='" + createdAt + '\'' +
-                ", checkpointTime='" + checkpointTime + '\'' +
-                ", city='" + city + '\'' +
-                ", countryISO3=" + countryISO3 +
-                ", countryName='" + countryName + '\'' +
-                ", message='" + message + '\'' +
-                ", state='" + state + '\'' +
-                ", tag='" + tag + '\'' +
-                ", zip='" + zip + '\'' +
-                '}';
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public String getSubtag() {
+        return subtag;
+    }
+
+    public void setSubtag(String subtag) {
+        this.subtag = subtag;
+    }
+
+    public String getCheckpointTime() {
+        return checkpointTime;
+    }
+
+    public void setCheckpointTime(String checkpointTime) {
+        this.checkpointTime = checkpointTime;
+    }
+
+    public List<String> getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(List<String> coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 }
