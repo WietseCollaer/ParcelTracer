@@ -15,7 +15,7 @@ Android application for package tracing
 **Get a tracking (by slug identifier and tracking number)**
 
     TrackingController controller = new TrackingController();
-    Tracking tracking = controller.getTrackingById("fedex","61297641751820041328");
+    Tracking tracking = controller.getTrackingByNumber("fedex","61297641751820041328");
 
 **Post a tracking**
 
@@ -31,9 +31,9 @@ Android application for package tracing
 **Delete a tracking (by ID)**
 
     TrackingController controller = new TrackingController();
-    controller.deleteTracking("59f64666fb17dff40b3d79ec");
+    controller.deleteTrackingById("59f64666fb17dff40b3d79ec");
 
 **Delete a tracking (by ID)**
 
     TrackingController controller = new TrackingController();
-    controller.deleteTracking("fedex","61297641751820041328");
+    controller.deleteTrackingByNumber("fedex","61297641751820041328");
