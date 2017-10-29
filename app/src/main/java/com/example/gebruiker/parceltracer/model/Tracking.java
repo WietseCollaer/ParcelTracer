@@ -220,10 +220,10 @@ public class Tracking {
     @Expose(serialize = false)
     private String trackingShipDate;
 
-    public Tracking(String slug, String trackingNumber, String title, Map<String, String> customFields) {
+    public Tracking(String title, String slug, String trackingNumber, Map<String,String> customFields) {
+        this.title = title;
         this.slug = slug;
         this.trackingNumber = trackingNumber;
-        this.title = title;
         this.customFields = customFields;
     }
 
