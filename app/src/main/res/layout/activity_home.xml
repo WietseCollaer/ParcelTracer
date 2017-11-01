@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#cccccc"
     android:padding="10dp"
-    tools:context="com.example.gebruiker.parceltracer.HomeActivity"
+    tools:context="com.example.gebruiker.parceltracer.view.activities.HomeActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="81dp">
 

@@ -1,11 +1,12 @@
-package com.example.gebruiker.parceltracer.presenter.controller;
+package com.example.gebruiker.parceltracer.api.controllers;
 
 import com.example.gebruiker.parceltracer.model.AftershipResource;
 import com.example.gebruiker.parceltracer.model.Tracking;
-import com.example.gebruiker.parceltracer.presenter.services.TrackingService;
-import com.example.gebruiker.parceltracer.presenter.utils.ServiceGenerator;
+import com.example.gebruiker.parceltracer.api.services.TrackingService;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.Observable;
 
@@ -13,8 +14,9 @@ public class TrackingController {
     private TrackingService service;
     private Observable<AftershipResource> resource;
 
-    public TrackingController() {
-        service = ServiceGenerator.createService(TrackingService.class);
+    @Inject
+    public TrackingController(TrackingService service) {
+        this.service = service;
     }
 
     public List<Tracking> getTrackings() {

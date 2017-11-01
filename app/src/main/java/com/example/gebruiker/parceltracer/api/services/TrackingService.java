@@ -1,4 +1,4 @@
-package com.example.gebruiker.parceltracer.presenter.services;
+package com.example.gebruiker.parceltracer.api.services;
 
 import com.example.gebruiker.parceltracer.model.AftershipResource;
 

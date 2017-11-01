@@ -1,14 +1,12 @@
-package com.example.gebruiker.parceltracer;
+package com.example.gebruiker.parceltracer.view.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
-import com.example.gebruiker.parceltracer.DAL.ConnectionAPI;
-import com.example.gebruiker.parceltracer.DAL.ConnectionAPIMethods;
+import com.example.gebruiker.parceltracer.R;
 import com.example.gebruiker.parceltracer.view.fragments.ParcelOverviewFragment;
 
 public class HomeActivity extends ActionBarActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

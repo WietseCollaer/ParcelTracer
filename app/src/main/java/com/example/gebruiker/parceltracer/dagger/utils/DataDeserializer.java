@@ -1,4 +1,4 @@
-package com.example.gebruiker.parceltracer.presenter.utils;
+package com.example.gebruiker.parceltracer.dagger.utils;
 
 import com.example.gebruiker.parceltracer.model.AftershipResource;
 import com.google.gson.Gson;
