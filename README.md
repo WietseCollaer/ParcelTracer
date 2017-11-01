@@ -33,7 +33,7 @@ Android application for package tracing
     TrackingController controller = new TrackingController();
     controller.deleteTrackingById("59f64666fb17dff40b3d79ec");
 
-**Delete a tracking (by ID)**
+**Delete a tracking (by slug identifier and tracking number)**
 
     TrackingController controller = new TrackingController();
     controller.deleteTrackingByNumber("fedex","61297641751820041328");
