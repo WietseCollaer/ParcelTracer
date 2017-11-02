@@ -52,14 +52,6 @@ dependencies {
 
     //Dagger
     compile 'com.google.dagger:dagger:2.12'
-    provided 'javax.annotation:jsr250-api:1.0'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.12'
-
-    //StorIO
-    compile 'com.pushtorefresh.storio:sqlite:1.13.0'
-    compile 'com.pushtorefresh.storio:content-resolver:1.13.0'
-    compile 'com.pushtorefresh.storio:sqlite-annotations:1.13.0'
-    compile 'com.pushtorefresh.storio:content-resolver-annotations:1.13.0'
-    annotationProcessor 'com.pushtorefresh.storio:sqlite-annotations-processor:1.13.0'
-    annotationProcessor 'com.pushtorefresh.storio:content-resolver-annotations-processor:1.13.0'
+    provided 'javax.annotation:jsr250-api:1.0'
 }
