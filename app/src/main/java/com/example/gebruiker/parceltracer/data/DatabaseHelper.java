@@ -19,8 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         final String SQL_CREATE_TRACKING_TABLE =
                 "CREATE TABLE " + TrackingEntry.TABLE_NAME + " (" +
-                TrackingEntry._ID + "INTEGER PRIMARY KEY, " +
-                TrackingEntry.COLUMN_TRACKING_ID + "TEXT UNIQUE NOT NULL, " +
+                TrackingEntry.COLUMN_TRACKING_ID + "TEXT PRIMARY KEY, " +
                 TrackingEntry.COLUMN_TRACKING_NUMBER + "TEXT UNIQUE NOT NULL, " +
                 TrackingEntry.COLUMN_TITLE + "TEXT NOT NULL, " +
                 TrackingEntry.COLUMN_SLUG + "TEXT NOT NULL, " +

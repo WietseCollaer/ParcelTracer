@@ -2,28 +2,19 @@ package com.example.gebruiker.parceltracer.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.pushtorefresh.storio.contentresolver.annotations.StorIOContentResolverColumn;
-import com.pushtorefresh.storio.contentresolver.annotations.StorIOContentResolverType;
-import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
-import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
 import java.util.List;
 
-import com.example.gebruiker.parceltracer.data.DatabaseContract.CheckpointEntry;
-
-@StorIOSQLiteType(table = CheckpointEntry.TABLE_NAME)
-@StorIOContentResolverType(uri = CheckpointEntry.CONTENT_URI_STRING)
 public class Checkpoint {
+    /** Checkpoint ID */
+    private int id;
+
     /** Unique code of each courier */
-    @StorIOSQLiteColumn(name = CheckpointEntry.COLUMN_SLUG)
-    @StorIOContentResolverColumn(name = CheckpointEntry.COLUMN_SLUG)
     @SerializedName("slug")
     @Expose
     private String slug;
 
     /** City name of the checkpoint (if any) */
-    @StorIOSQLiteColumn(name = CheckpointEntry.COLUMN_CITY)
-    @StorIOContentResolverColumn(name = CheckpointEntry.COLUMN_CITY)
     @SerializedName("city")
     @Expose
     private String city;
@@ -39,29 +30,21 @@ public class Checkpoint {
     private String location;
 
     /** Country name of the checkpoint, may also contain other location info */
-    @StorIOSQLiteColumn(name = CheckpointEntry.COLUMN_COUNTRY)
-    @StorIOContentResolverColumn(name = CheckpointEntry.COLUMN_COUNTRY)
     @SerializedName("country_name")
     @Expose
     private String countryName;
 
     /** Checkpoint message */
-    @StorIOSQLiteColumn(name = CheckpointEntry.COLUMN_MESSAGE)
-    @StorIOContentResolverColumn(name = CheckpointEntry.COLUMN_MESSAGE)
     @SerializedName("message")
     @Expose
     private String message;
 
     /** Country ISO Alpha-3 (three letters) of the checkpoint */
-    @StorIOSQLiteColumn(name = CheckpointEntry.COLUMN_COUNTRY_ISO3)
-    @StorIOContentResolverColumn(name = CheckpointEntry.COLUMN_COUNTRY_ISO3)
     @SerializedName("country_iso3")
     @Expose
     private String countryISO3;
 
     /** Status of the checkpoint */
-    @StorIOSQLiteColumn(name = CheckpointEntry.COLUMN_TAG)
-    @StorIOContentResolverColumn(name = CheckpointEntry.COLUMN_TAG)
     @SerializedName("tag")
     @Expose
     private String tag;
@@ -77,8 +60,6 @@ public class Checkpoint {
      * YYYY-MM-DDTHH:MM:SS, or
      * YYYY-MM-DDTHH:MM:SS+TIMEZONE
      */
-    @StorIOSQLiteColumn(name = CheckpointEntry.COLUMN_DATE)
-    @StorIOContentResolverColumn(name = CheckpointEntry.COLUMN_DATE)
     @SerializedName("checkpoint_time")
     @Expose
     private String checkpointTime;
@@ -89,23 +70,21 @@ public class Checkpoint {
     private List<String> coordinates;
 
     /** State name of the checkpoint (if any) */
-    @StorIOSQLiteColumn(name = CheckpointEntry.COLUMN_STATE)
-    @StorIOContentResolverColumn(name = CheckpointEntry.COLUMN_STATE)
     @SerializedName("state")
     @Expose
     private String state;
 
     /** ZIP Code of the checkpoint (if any) */
-    @StorIOSQLiteColumn(name = CheckpointEntry.COLUMN_ZIP)
-    @StorIOContentResolverColumn(name = CheckpointEntry.COLUMN_ZIP)
     @SerializedName("zip")
     @Expose
     private String zip;
 
     /** Tracking id */
-    @StorIOSQLiteColumn(name = CheckpointEntry.COLUMN_TRACKING_KEY)
-    @StorIOContentResolverColumn(name = CheckpointEntry.COLUMN_TRACKING_KEY)
     private String trackingKey;
+
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
 
     public String getSlug() {
         return slug;
