@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <provider
+            android:authorities="com.example.gebruiker.parceltracer"
+            android:name=".data.Provider" />
     </application>
-
 </manifest>

@@ -2,15 +2,26 @@ package com.example.gebruiker.parceltracer.model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.pushtorefresh.storio.contentresolver.annotations.StorIOContentResolverColumn;
+import com.pushtorefresh.storio.contentresolver.annotations.StorIOContentResolverType;
+import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteColumn;
+import com.pushtorefresh.storio.sqlite.annotations.StorIOSQLiteType;
 
 import java.util.List;
 import java.util.Map;
 
+import com.example.gebruiker.parceltracer.data.DatabaseContract.TrackingEntry;
+
+@StorIOSQLiteType(table = TrackingEntry.TABLE_NAME)
+@StorIOContentResolverType(uri = TrackingEntry.CONTENT_URI_STRING)
 public class Tracking {
     /** Identifier of the tracking in the Aftership system */
+    @StorIOSQLiteColumn(name = TrackingEntry.COLUMN_TRACKING_ID, key = true)
+    @StorIOContentResolverColumn(name = TrackingEntry.COLUMN_TRACKING_ID, key = true)
     @SerializedName("id")
     @Expose(serialize = false)
     private String id;
+
 
     /** Date and time of the tracking created */
     @SerializedName("created_at")
@@ -31,6 +42,8 @@ public class Tracking {
      * or tracking number with invalid tracking number format will
      * not be accepted.
      */
+    @StorIOSQLiteColumn(name = TrackingEntry.COLUMN_TRACKING_NUMBER)
+    @StorIOContentResolverColumn(name = TrackingEntry.COLUMN_TRACKING_NUMBER)
     @SerializedName("tracking_number")
     @Expose
     private String trackingNumber;
@@ -39,6 +52,8 @@ public class Tracking {
      * Aftership will automatically detect the courier based on the
      * tracking number format and your selected couriers.
      */
+    @StorIOSQLiteColumn(name = TrackingEntry.COLUMN_SLUG)
+    @StorIOContentResolverColumn(name = TrackingEntry.COLUMN_SLUG)
     @SerializedName("slug")
     @Expose
     private String slug;
@@ -61,6 +76,8 @@ public class Tracking {
     private Map<String, String> customFields;
 
     /** Customer name of the tracking */
+    @StorIOSQLiteColumn(name = TrackingEntry.COLUMN_CUSTOMER)
+    @StorIOContentResolverColumn(name = TrackingEntry.COLUMN_CUSTOMER)
     @SerializedName("customer_name")
     @Expose(serialize = false)
     private String customerName;
@@ -74,8 +91,10 @@ public class Tracking {
      * If you use postal service to send international shipments, Aftership will automatically
      * get tracking results at the destination courier as well (e.g. USPS for USA).
      */
+    @StorIOSQLiteColumn(name = TrackingEntry.COLUMN_DESTINATION_ISO3)
+    @StorIOContentResolverColumn(name = TrackingEntry.COLUMN_DESTINATION_ISO3)
     @SerializedName("destination_country_iso3")
-    @Expose(serialize = false)
+    @Expose
     private String destinationCountryISO3;
 
     /** Email address(es) to receive email notifications, if several they will be separated by commas */
@@ -84,6 +103,8 @@ public class Tracking {
     private List<String> emails;
 
     /** Expected delivery date (if any) */
+    @StorIOSQLiteColumn(name = TrackingEntry.COLUMN_EXPECTED_DELIVERY)
+    @StorIOContentResolverColumn(name = TrackingEntry.COLUMN_EXPECTED_DELIVERY)
     @SerializedName("expected_delivery")
     @Expose(serialize = false)
     private String expectedDelivery;
@@ -93,7 +114,9 @@ public class Tracking {
     @Expose(serialize = false)
     private List<String> ios;
 
-    /** remark on the tracking */
+    /** remarks on the tracking */
+    @StorIOSQLiteColumn(name = TrackingEntry.COLUMN_NOTE)
+    @StorIOContentResolverColumn(name = TrackingEntry.COLUMN_NOTE)
     @SerializedName("note")
     @Expose(serialize = false)
     private String note;
@@ -109,8 +132,10 @@ public class Tracking {
     private String orderIDPath;
 
     /** Country ISO Alpha-3 (three letters) to specify the origin country of the tracking */
+    @StorIOSQLiteColumn(name = TrackingEntry.COLUMN_ORIGIN_ISO3)
+    @StorIOContentResolverColumn(name = TrackingEntry.COLUMN_ORIGIN_ISO3)
     @SerializedName("origin_country_iso3")
-    @Expose(serialize = false)
+    @Expose
     private String originCountryISO3;
 
     /** Number of packages under the tracking */
@@ -124,6 +149,8 @@ public class Tracking {
     private String shipmentPickupDate;
 
     /** Date when the shipment has been delivered */
+    @StorIOSQLiteColumn(name = TrackingEntry.COLUMN_DELIVERY_DATE)
+    @StorIOContentResolverColumn(name = TrackingEntry.COLUMN_DELIVERY_DATE)
     @SerializedName("shipment_delivery_date")
     @Expose(serialize = false)
     private String shipmentDeliveryDate;
@@ -144,6 +171,8 @@ public class Tracking {
     private String shipmentWeightUnit;
 
     /** Signed by information for delivered shipment (if any) */
+    @StorIOSQLiteColumn(name = TrackingEntry.COLUMN_SIGNED_BY)
+    @StorIOContentResolverColumn(name = TrackingEntry.COLUMN_SIGNED_BY)
     @SerializedName("signed_by")
     @Expose(serialize = false)
     private String signedBy;
@@ -161,6 +190,8 @@ public class Tracking {
     private String source;
 
     /** Current status of tracking */
+    @StorIOSQLiteColumn(name = TrackingEntry.COLUMN_TAG)
+    @StorIOContentResolverColumn(name = TrackingEntry.COLUMN_TAG)
     @SerializedName("tag")
     @Expose(serialize = false)
     private String tag;
@@ -171,6 +202,8 @@ public class Tracking {
     private String subtag;
 
     /** Title of the tracking (Default value: tracking number) */
+    @StorIOSQLiteColumn(name = TrackingEntry.COLUMN_TITLE)
+    @StorIOContentResolverColumn(name = TrackingEntry.COLUMN_TITLE)
     @SerializedName("title")
     @Expose
     private String title;
@@ -191,7 +224,7 @@ public class Tracking {
     private String uniqueToken;
 
     /** All checkpoints of this tracking */
-    @SerializedName(value = "checkpoint", alternate = "checkpoints")
+    @SerializedName("checkpoints")
     @Expose(serialize = false)
     private List<Checkpoint> checkpoints;
 
