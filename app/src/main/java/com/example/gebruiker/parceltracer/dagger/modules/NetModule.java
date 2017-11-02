@@ -1,8 +1,10 @@
 package com.example.gebruiker.parceltracer.dagger.modules;
 
 import android.app.Application;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
-import com.example.gebruiker.parceltracer.api.controllers.TrackingController;
+import com.example.gebruiker.parceltracer.api.repositories.TrackingRepository;
 import com.example.gebruiker.parceltracer.api.services.TrackingService;
 import com.example.gebruiker.parceltracer.dagger.utils.DataDeserializer;
 import com.example.gebruiker.parceltracer.model.AftershipResource;
@@ -29,6 +31,12 @@ public class NetModule {
     public NetModule(String baseUrl, String apiKey) {
         this.baseUrl = baseUrl;
         this.apiKey = apiKey;
+    }
+
+    @Provides
+    @Singleton
+    SharedPreferences provideSharedPreferences(Application application) {
+        return PreferenceManager.getDefaultSharedPreferences(application);
     }
 
     @Provides
@@ -84,7 +92,7 @@ public class NetModule {
 
     @Provides
     @Singleton
-    TrackingController provideTrackingController(TrackingService service) {
-        return new TrackingController(service);
+    TrackingRepository provideTrackingRepository(TrackingService service) {
+        return new TrackingRepository(service);
     }
 }

@@ -67,22 +67,22 @@ public class AftershipResource {
     private String lastUpdatedAt;
 
     /** List of Trackings */
-    @SerializedName(value = "trackings")
+    @SerializedName("trackings")
     @Expose(serialize = false)
     private List<Tracking> trackings;
 
     /** Single Trackings */
-    @SerializedName(value = "tracking")
+    @SerializedName("tracking")
     @Expose
     private Tracking tracking;
 
     /** List of Couriers */
-    @SerializedName(value = "couriers")
+    @SerializedName("couriers")
     @Expose(serialize = false)
     private List<Courier> couriers;
 
     /** Single Courier */
-    @SerializedName(value = "courier")
+    @SerializedName("courier")
     @Expose(serialize = false)
     private Courier courier;
 

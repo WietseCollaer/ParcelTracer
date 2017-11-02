@@ -1,4 +1,4 @@
-package com.example.gebruiker.parceltracer.api.controllers;
+package com.example.gebruiker.parceltracer.api.repositories;
 
 import com.example.gebruiker.parceltracer.model.AftershipResource;
 import com.example.gebruiker.parceltracer.model.Tracking;
@@ -10,12 +10,12 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 
-public class TrackingController {
+public class TrackingRepository {
     private TrackingService service;
     private Observable<AftershipResource> resource;
 
     @Inject
-    public TrackingController(TrackingService service) {
+    public TrackingRepository(TrackingService service) {
         this.service = service;
     }
 
