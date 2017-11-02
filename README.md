@@ -2,7 +2,7 @@
 Android application for package tracing
 
 ## Dependency Injection
-** Preparing injection **
+**Preparing injection**
 Add a new inject-method - void inject(class) - in order rely on dependency injection
     
     public interface NetComponent {
@@ -10,7 +10,7 @@ Add a new inject-method - void inject(class) - in order rely on dependency injec
         void inject(HomeActivity activity);
     }
    
-** Inject controller **
+**Inject controller**
 Add the inject annotation in order to use the controller
 
     public class HomeActivity extends ActionBarActivity {
@@ -25,19 +25,19 @@ Add the inject annotation in order to use the controller
     }
     
 ## Controllers
-** Get a list of trackings **
+**Get a list of trackings**
 
     List<Tracking> trackings = controller.getTrackings();
     
-** Get a tracking by ID **
+**Get a tracking by ID**
 
     Tracking tracking = controller.getTrackingById("59f64666fb17dff40b3d79ec");
     
-** Get a tracking by slug identifier and tracking number **
+**Get a tracking by slug identifier and tracking number**
 
     Tracking tracking = controller.getTrackingByNumber("fedex","61297641751820041328");
     
-** Post a tracking **
+**Post a tracking**
 
    Map<String,String> customFields;
    customFields.put("Category","Other");
@@ -46,10 +46,10 @@ Add the inject annotation in order to use the controller
    
    controller.addTracking(new AftershipResource(tracking));
    
-** Delete a tracking by ID **
+**Delete a tracking by ID**
 
    controller.deleteTrackingById("59f64666fb17dff40b3d79ec");
    
-** Delete a tracking by slug identifier and tracking number
+**Delete a tracking by slug identifier and tracking number**
 
    controller.deleteTrackingByNumber("fedex","61297641751820041328");
