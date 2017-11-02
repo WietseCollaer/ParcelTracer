@@ -41,17 +41,17 @@ Inject the controller by using the "@Inject" annotation
     
 **Post a tracking**
 
-   Map<String,String> customFields;
-   customFields.put("Category","Other");
+    Map<String,String> customFields;
+    customFields.put("Category","Other");
    
-   Tracking tracking = new Tracking("Title","fedex","61297641751820041328",customFields);
+    Tracking tracking = new Tracking("Title","fedex","61297641751820041328",customFields);
    
-   controller.addTracking(new AftershipResource(tracking));
+    controller.addTracking(new AftershipResource(tracking));
    
 **Delete a tracking by ID**
 
-   controller.deleteTrackingById("59f64666fb17dff40b3d79ec");
+    controller.deleteTrackingById("59f64666fb17dff40b3d79ec");
    
 **Delete a tracking by slug identifier and tracking number**
 
-   controller.deleteTrackingByNumber("fedex","61297641751820041328");
+    controller.deleteTrackingByNumber("fedex","61297641751820041328");
