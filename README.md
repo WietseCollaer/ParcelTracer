@@ -3,6 +3,7 @@ Android application for package tracing
 
 ## Dependency Injection
 **Preparing injection**
+
 Add a new inject-method - void inject(class) - in order rely on dependency injection
     
     public interface NetComponent {
@@ -11,6 +12,7 @@ Add a new inject-method - void inject(class) - in order rely on dependency injec
     }
    
 **Inject controller**
+
 Add the inject annotation in order to use the controller
 
     public class HomeActivity extends ActionBarActivity {
