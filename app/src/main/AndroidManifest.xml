@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.gebruiker.parceltracer">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -13,11 +15,17 @@
         <activity android:name=".view.activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
-            android:authorities="com.example.gebruiker.parceltracer"
-            android:name=".data.Provider" />
+            android:name=".data.Provider"
+            android:authorities="com.example.gebruiker.parceltracer" />
+
+        <activity android:name=".view.activities.DetailsActivity" />
+        <activity android:name=".view.activities.AddParcelActivity"></activity>
     </application>
+
 </manifest>

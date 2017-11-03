@@ -8,18 +8,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.gebruiker.parceltracer.App;
 import com.example.gebruiker.parceltracer.DummyClasses.ParcelDummy;
 import com.example.gebruiker.parceltracer.R;
+import com.example.gebruiker.parceltracer.api.repositories.TrackingRepository;
+import com.example.gebruiker.parceltracer.model.Tracking;
 import com.example.gebruiker.parceltracer.view.adapters.ParcelListAdapter;
 
-import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import dagger.Module;
 
+@Module
 public class ParcelOverviewFragment extends Fragment {
     @BindView(R.id.parcel_list)
     ListView parcelList;
+
+    @Inject
+    public TrackingRepository repository;
 
     public ParcelOverviewFragment() {
     }
@@ -27,7 +37,7 @@ public class ParcelOverviewFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        ((App)getActivity().getApplication()).getNetComponent().inject(this);
     }
 
     @Override
@@ -36,13 +46,15 @@ public class ParcelOverviewFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         //TODO replace with real data from the api.
-        ArrayList<ParcelDummy> dummies = new ArrayList<>();
-        dummies.add(new ParcelDummy("Samsung s8", "received"));
-        dummies.add(new ParcelDummy("Iphone 8", "sent"));
+        List<Tracking> trackings = getAllTrackings();
 
-        ParcelListAdapter adapter = new ParcelListAdapter(getContext(), dummies);
+        ParcelListAdapter adapter = new ParcelListAdapter(getContext(), trackings);
         parcelList.setAdapter(adapter);
 
         return view;
+    }
+
+    private List<Tracking> getAllTrackings() {
+        return repository.getTrackings();
     }
 }

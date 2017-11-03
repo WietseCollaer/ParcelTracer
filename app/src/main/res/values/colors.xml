@@ -5,5 +5,7 @@
     <color name="colorAccent">#ffc107</color>
     <color name="card_background">#e0e0e0</color>
     <color name="Color_Title">#dd000000</color>
+    <color name="card_text_background">#e0ffffff</color>
+    <color name="app_background">#ccc</color>
 
 </resources>

@@ -6,59 +6,73 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginBottom="4dp"
 
+    android:layout_margin="10dp"
+    android:background="@mipmap/mobile_and_pc"
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="2dp"
     app:cardElevation="4dp">
 
 
+    <ImageView
+        android:id="@+id/category_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        app:srcCompat="@mipmap/mobile_and_pc" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/card_text_background"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:padding="5dp">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <TextView
+            android:id="@+id/parcel_list_item_itemName"
             android:layout_width="match_parent"
-            android:layout_height="125dp"
-            app:srcCompat="@mipmap/mobile_and_pc" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:textColor="@color/Color_Title"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/parcel_list_item_itemStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/parcel_list_item_itemName"
+            <Button
+                android:id="@+id/view_details_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/Color_Title"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:layout_conversion_absoluteHeight="21dp"
-                tools:layout_conversion_absoluteWidth="350dp"
-                tools:layout_conversion_absoluteX="2dp"
-                tools:layout_conversion_absoluteY="2dp"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="8dp" />
+                android:background="@android:color/transparent"
+                android:text="bekijk"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorAccent" />
 
-            <TextView
-                android:id="@+id/parcel_list_item_itemStatus"
+            <Button
+                android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/Color_Title"
-                tools:layout_conversion_absoluteHeight="16dp"
-                tools:layout_conversion_absoluteWidth="58dp"
-                tools:layout_conversion_absoluteX="2dp"
-                tools:layout_conversion_absoluteY="2dp"
-                tools:layout_editor_absoluteX="2dp"
-                tools:layout_editor_absoluteY="2dp" />
+                android:background="@android:color/transparent"
+                android:text="verwijder"
+                android:textAlignment="textStart"
+                android:textColor="@color/colorAccent" />
         </LinearLayout>
 
     </LinearLayout>
-
 
 </android.support.v7.widget.CardView>

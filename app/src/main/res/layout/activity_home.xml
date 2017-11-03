@@ -5,10 +5,18 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#cccccc"
-    android:padding="10dp"
+    android:background="@android:color/darker_gray"
     tools:context="com.example.gebruiker.parceltracer.view.activities.HomeActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="81dp">
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_parcel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="10dp"
+        android:clickable="true"
+        app:elevation="5dp"
+        app:srcCompat="@android:drawable/ic_input_add" />
 </FrameLayout>
