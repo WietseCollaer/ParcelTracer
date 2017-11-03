@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.example.gebruiker.parceltracer.DummyClasses.ParcelDummy;
 import com.example.gebruiker.parceltracer.R;
 import com.example.gebruiker.parceltracer.model.Tracking;
 import com.example.gebruiker.parceltracer.view.activities.DetailsActivity;

@@ -3,6 +3,9 @@ package com.example.gebruiker.parceltracer.view.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.gebruiker.parceltracer.R;
 import com.example.gebruiker.parceltracer.view.fragments.ParcelOverviewFragment;
@@ -28,5 +31,17 @@ public class HomeActivity extends ActionBarActivity {
     public void showAddParcelPage(){
         Intent intent = new Intent(getApplicationContext(), AddParcelActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.refresh, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        getSupportFragmentManager().beginTransaction().add(R.id.container, new ParcelOverviewFragment()).commit();
+        return true;
     }
 }

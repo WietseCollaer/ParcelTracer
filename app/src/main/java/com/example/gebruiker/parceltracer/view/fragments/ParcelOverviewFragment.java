@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.gebruiker.parceltracer.App;
-import com.example.gebruiker.parceltracer.DummyClasses.ParcelDummy;
 import com.example.gebruiker.parceltracer.R;
 import com.example.gebruiker.parceltracer.api.repositories.TrackingRepository;
 import com.example.gebruiker.parceltracer.model.Tracking;

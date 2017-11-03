@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">ParcelTracer</string>
     <string name="info_text">Hier kan u een pakket toevoegen. Uit het trackingnummer zal de app het juiste postbedrijf halen.         Als naam kan u kiezen wat voor u het duidelijkste is om dit pakketje te herkennen.</string>
+    <string name="input_naam">Naam</string>
+    <string name="menu_refresh">Ververs gegevens</string>
+    <string name="tracking_id">Tracking code</string>
+    <string name="category_prompt">Kies een categorie</string>
+    <string name="courier_prompt">Postorderbedrijf</string>
+
+    <string-array name="categories">
+        <item>PC en Mobile</item>
+        <item>Huishoudtoestel</item>
+        <item>Andere</item>
+    </string-array>
+
+    <string-array name="courier_options">
+        <item>Fedex</item>
+        <item>DHL-PieceId</item>
+        <item>Bpost</item>
+    </string-array>
 </resources>

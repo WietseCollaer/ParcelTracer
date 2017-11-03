@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:layout_marginTop="0dp"
+    android:background="@color/cardview_light_background"
+    android:elevation="4dp"
+    android:orientation="vertical"
+    android:padding="7dp">
+
+    <EditText
+        android:id="@+id/parcel_input_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:ems="10"
+        android:hint="@string/input_naam"
+        android:inputType="textPersonName" />
+
+    <Spinner
+        android:id="@+id/parcel_input_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:prompt="@string/category_prompt" />
+
+    <EditText
+        android:id="@+id/parcel_input_tracking_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:ems="10"
+        android:hint="@string/tracking_id"
+        android:inputType="textPersonName" />
+
+    <Spinner
+        android:id="@+id/parcel_input_courier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:prompt="@string/courier_prompt" />
+
+    <Button
+        android:id="@+id/add_parcel_save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:background="@color/colorAccent"
+        android:elevation="2dp"
+        android:text="Opslaan"
+        android:textColor="@color/Color_Title" />
+
+    <TextView
+        android:id="@+id/parcel_input_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_light" />
+
+</LinearLayout>
