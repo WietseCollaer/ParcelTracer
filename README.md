@@ -13,7 +13,7 @@ Add a new inject-method 'void inject(class)' in order to rely on dependency inje
    
 **Inject controller**
 
-Inject the controller by using the "@Inject" annotation and add '((App)getApplication()).getNetComponent().inject(this)'
+Inject the controller by using the "@Inject" annotation and add '((App) getApplication()).getNetComponent().inject(this)'
 
     public class HomeActivity extends ActionBarActivity {
         @Inject
@@ -23,7 +23,7 @@ Inject the controller by using the "@Inject" annotation and add '((App)getApplic
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             ...
-            ((App)getApplication()).getNetComponent().inject(this);
+            ((App) getApplication()).getNetComponent().inject(this);
         }
     }
     
