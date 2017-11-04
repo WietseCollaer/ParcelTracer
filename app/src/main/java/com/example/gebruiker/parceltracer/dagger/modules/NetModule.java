@@ -4,7 +4,9 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.example.gebruiker.parceltracer.api.repositories.CourierRepository;
 import com.example.gebruiker.parceltracer.api.repositories.TrackingRepository;
+import com.example.gebruiker.parceltracer.api.services.CourierService;
 import com.example.gebruiker.parceltracer.api.services.TrackingService;
 import com.example.gebruiker.parceltracer.dagger.utils.DataDeserializer;
 import com.example.gebruiker.parceltracer.model.AftershipResource;
@@ -94,5 +96,17 @@ public class NetModule {
     @Singleton
     TrackingRepository provideTrackingRepository(TrackingService service) {
         return new TrackingRepository(service);
+    }
+
+    @Provides
+    @Singleton
+    CourierService provideCourierService(Retrofit retrofit) {
+        return retrofit.create(CourierService.class);
+    }
+
+    @Provides
+    @Singleton
+    CourierRepository provideCourierRepository(CourierService service) {
+        return new CourierRepository(service);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.gebruiker.parceltracer.api.repositories;
 
 import com.example.gebruiker.parceltracer.model.AftershipResource;
+import com.example.gebruiker.parceltracer.model.Checkpoint;
 import com.example.gebruiker.parceltracer.model.Tracking;
 import com.example.gebruiker.parceltracer.api.services.TrackingService;
 
@@ -32,6 +33,16 @@ public class TrackingRepository {
     public Tracking getTrackingByNumber(String slug, String number) {
         resource = service.getTrackingByNumber(slug, number);
         return resource.blockingFirst().getTracking();
+    }
+
+    public List<Checkpoint> getCheckpointsById(String trackingId) {
+        resource = service.getTrackingById(trackingId);
+        return resource.blockingFirst().getTracking().getCheckpoints();
+    }
+
+    public List<Checkpoint> getCheckpointsByNumber(String slug, String trackingNumber) {
+        resource = service.getTrackingByNumber(slug, trackingNumber);
+        return resource.blockingFirst().getTracking().getCheckpoints();
     }
 
     public Tracking addTracking(AftershipResource item) {

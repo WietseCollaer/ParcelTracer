@@ -81,11 +81,6 @@ public class AftershipResource {
     @Expose(serialize = false)
     private List<Courier> couriers;
 
-    /** Single Courier */
-    @SerializedName("courier")
-    @Expose(serialize = false)
-    private Courier courier;
-
     public AftershipResource(Tracking tracking) {
         this.tracking = tracking;
     }
@@ -208,13 +203,5 @@ public class AftershipResource {
 
     public void setCouriers(List<Courier> couriers) {
         this.couriers = couriers;
-    }
-
-    public Courier getCourier() {
-        return courier;
-    }
-
-    public void setCourier(Courier courier) {
-        this.courier = courier;
     }
 }

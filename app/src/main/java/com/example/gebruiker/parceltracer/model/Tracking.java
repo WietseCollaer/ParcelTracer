@@ -12,7 +12,6 @@ public class Tracking {
     @Expose(serialize = false)
     private String id;
 
-
     /** Date and time of the tracking created */
     @SerializedName("created_at")
     @Expose(serialize = false)
@@ -221,11 +220,21 @@ public class Tracking {
     @Expose(serialize = false)
     private String trackingShipDate;
 
+    /** Category of the package */
+    private String category;
+
     public Tracking(String title, String slug, String trackingNumber, Map<String,String> customFields) {
         this.title = title;
         this.slug = slug;
         this.trackingNumber = trackingNumber;
         this.customFields = customFields;
+
+        if (customFields.get("Category") != null)
+            category = customFields.get("Category");
+        else if (customFields.get("category") != null)
+            category = customFields.get("category");
+        else
+            category = "";
     }
 
     public String getId() {
