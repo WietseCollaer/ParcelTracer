@@ -11,7 +11,7 @@ Add a new inject-method 'void inject(class)' in order to rely on dependency inje
         void inject(HomeActivity activity);
     }
    
-**Inject controller**
+**Inject repository**
 
 Inject the controller by using the "@Inject" annotation and add '((App) getApplication()).getNetComponent().inject(this)'
 
@@ -27,7 +27,7 @@ Inject the controller by using the "@Inject" annotation and add '((App) getAppli
         }
     }
     
-## Controllers
+## Tracking Repository
 **Get a list of trackings**
 
     List<Tracking> trackings = repository.getTrackings();
@@ -39,6 +39,14 @@ Inject the controller by using the "@Inject" annotation and add '((App) getAppli
 **Get a tracking by slug identifier and tracking number**
 
     Tracking tracking = repository.getTrackingByNumber("fedex","61297641751820041328");
+    
+**Get a list of checkpoints by Tracking ID**
+
+    List<Checkpoint> checkpoints = repository.getCheckpointsById("59f64666fb17dff40b3d79ec");
+    
+**Get a list of checkpoints by slug identifier and tracking number**
+
+    List<Checkpoint> checkpoints = repository.getCheckpointsByNumber("fedex","61297641751820041328");
     
 **Post a tracking**
 
@@ -56,3 +64,12 @@ Inject the controller by using the "@Inject" annotation and add '((App) getAppli
 **Delete a tracking by slug identifier and tracking number**
 
     repository.deleteTrackingByNumber("fedex","61297641751820041328");
+    
+## Courier Repository
+**Get a list of couriers in your Aftership account**
+
+    List<Courier> couriers = repository.getCouriers();
+
+**Get a list of all couriers**
+
+    List<Courier> couriers = repository.getAllCouriers();
