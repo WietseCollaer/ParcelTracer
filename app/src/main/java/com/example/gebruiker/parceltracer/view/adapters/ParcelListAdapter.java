@@ -44,10 +44,10 @@ public class ParcelListAdapter extends ArrayAdapter<Tracking> {
         else{
             itemHolder = (ParcelItemHolder) convertView.getTag();
         }
-        Log.d(LOG_TAG, "Hier geweest" + tracking.getTitle());
+        Log.d(LOG_TAG, "Hier geweest: " + tracking.getTitle());
         itemHolder.itemName.setText(tracking.getTitle());
         itemHolder.itemStatus.setText(tracking.getTag());
-        itemHolder.trackingNumber = tracking.getTrackingNumber();
+        itemHolder.id = tracking.getId();
 
         return convertView;
     }
@@ -59,7 +59,7 @@ public class ParcelListAdapter extends ArrayAdapter<Tracking> {
         @BindView(R.id.parcel_list_item_itemStatus)
         TextView itemStatus;
 
-        String trackingNumber;
+        String id;
 
         public ParcelItemHolder(View view){
             ButterKnife.bind(this, view);
@@ -68,7 +68,7 @@ public class ParcelListAdapter extends ArrayAdapter<Tracking> {
         @OnClick(R.id.view_details_button)
         void goToDetails(View view){
             Intent intent = new Intent(view.getContext(), DetailsActivity.class)
-                    .putExtra("TrackingId", trackingNumber);
+                    .putExtra("TrackingId", id);
             view.getContext().startActivity(intent);
         }
     }

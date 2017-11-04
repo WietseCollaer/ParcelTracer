@@ -24,7 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:prompt="@string/category_prompt" />
+        android:prompt="@string/category_prompt"
+        android:spinnerMode="dialog" />
 
     <EditText
         android:id="@+id/parcel_input_tracking_id"
@@ -40,7 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:prompt="@string/courier_prompt" />
+        android:prompt="@string/courier_prompt"
+        android:spinnerMode="dialog" />
 
     <Button
         android:id="@+id/add_parcel_save_button"

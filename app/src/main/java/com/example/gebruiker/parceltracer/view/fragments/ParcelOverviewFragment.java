@@ -3,9 +3,14 @@ package com.example.gebruiker.parceltracer.view.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.gebruiker.parceltracer.App;
@@ -27,8 +32,13 @@ public class ParcelOverviewFragment extends Fragment {
     @BindView(R.id.parcel_list)
     ListView parcelList;
 
+    @BindView(R.id.swiperefresh)
+    SwipeRefreshLayout refreshLayout;
+
     @Inject
     public TrackingRepository repository;
+
+    private ParcelListAdapter adapter;
 
     public ParcelOverviewFragment() {
     }
@@ -44,13 +54,24 @@ public class ParcelOverviewFragment extends Fragment {
         View view = inflater.inflate(R.layout.overview_fragment, container, false);
         ButterKnife.bind(this, view);
 
-        //TODO replace with real data from the api.
-        List<Tracking> trackings = getAllTrackings();
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshContent();
+            }
+        });
 
-        ParcelListAdapter adapter = new ParcelListAdapter(getContext(), trackings);
+        adapter = new ParcelListAdapter(getContext(), getAllTrackings());
+        adapter.setNotifyOnChange(true);
         parcelList.setAdapter(adapter);
 
         return view;
+    }
+
+    private void refreshContent() {
+        adapter = new ParcelListAdapter(getContext(), getAllTrackings());
+        parcelList.setAdapter(adapter);
+        refreshLayout.setRefreshing(false);
     }
 
     private List<Tracking> getAllTrackings() {

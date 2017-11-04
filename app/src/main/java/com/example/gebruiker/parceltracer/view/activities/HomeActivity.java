@@ -30,15 +30,5 @@ public class HomeActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.refresh, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        getSupportFragmentManager().beginTransaction().add(R.id.container, new ParcelOverviewFragment()).commit();
-        return true;
-    }
 }

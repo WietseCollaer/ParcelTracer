@@ -9,6 +9,9 @@
     <string name="name_required">Naam is een verplicht veld.</string>
     <string name="trackingid_required">Tracking Id is een verplicht veld.</string>
     <string name="parcel_saved">Pakketje is opgeslagen.</string>
+    <string name="detail_title">Details</string>
+    <string name="pending_text">Als er bij het pakketje pending blijft staan, dan betekent dit dat het
+    trackingnummer dat u hebt opgegeven niet bekend is bij dit postbedrijf.</string>
 
     <string-array name="categories">
         <item>PC en Mobile</item>

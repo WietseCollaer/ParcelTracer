@@ -17,12 +17,16 @@ import android.widget.Toast;
 
 import com.example.gebruiker.parceltracer.App;
 import com.example.gebruiker.parceltracer.R;
+import com.example.gebruiker.parceltracer.api.repositories.CourierRepository;
 import com.example.gebruiker.parceltracer.api.repositories.TrackingRepository;
 import com.example.gebruiker.parceltracer.model.AftershipResource;
+import com.example.gebruiker.parceltracer.model.Courier;
 import com.example.gebruiker.parceltracer.model.Tracking;
 import com.example.gebruiker.parceltracer.view.activities.HomeActivity;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -37,7 +41,10 @@ import butterknife.OnClick;
 
 public class InputFragment extends Fragment {
     @Inject
-    TrackingRepository repository;
+    TrackingRepository trackingRepository;
+
+    @Inject
+    CourierRepository courierRepository;
 
     @BindView(R.id.parcel_input_name)
     EditText nameTextField;
@@ -70,17 +77,32 @@ public class InputFragment extends Fragment {
         View view = inflater.inflate(R.layout.input_fragment, container, false);
         ButterKnife.bind(this, view);
 
-        categorySelection.setAdapter(getItemsForSelection(R.array.categories));
-        courierSelection.setAdapter(getItemsForSelection(R.array.courier_options));
+        categorySelection.setAdapter(getItemsFromResource(R.array.categories));
+        courierSelection.setAdapter(getItemsFromList(courierRepository.getCouriers()));
 
         return view;
     }
 
     @NonNull
-    private ArrayAdapter<CharSequence> getItemsForSelection(@ArrayRes int items) {
+    private ArrayAdapter<CharSequence> getItemsFromResource(@ArrayRes int items) {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), items, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         return adapter;
+    }
+
+    @NonNull
+    private ArrayAdapter<CharSequence> getItemsFromList(List<Courier> items){
+        ArrayAdapter<CharSequence> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item);
+        adapter.addAll(getCouriersAsString(items));
+        return adapter;
+    }
+
+    private List<CharSequence> getCouriersAsString(List<Courier> items) {
+        List<CharSequence> courierNames = new ArrayList<>();
+        for (Courier courier : items) {
+            courierNames.add(courier.getName());
+        }
+        return courierNames;
     }
 
     @OnClick(R.id.add_parcel_save_button)
@@ -92,7 +114,7 @@ public class InputFragment extends Fragment {
         }
         else{
             Tracking trackingToAdd = getTrackingFromInput();
-            repository.addTracking(new AftershipResource(trackingToAdd));
+            trackingRepository.addTracking(new AftershipResource(trackingToAdd));
             Toast.makeText(getContext(), getString(R.string.parcel_saved), Toast.LENGTH_SHORT).show();
             startActivity(new Intent(getActivity(), HomeActivity.class));
         }
