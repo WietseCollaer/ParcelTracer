@@ -62,4 +62,7 @@ dependencies {
     compile 'com.pushtorefresh.storio:content-resolver-annotations:1.13.0'
     annotationProcessor 'com.pushtorefresh.storio:sqlite-annotations-processor:1.13.0'
     annotationProcessor 'com.pushtorefresh.storio:content-resolver-annotations-processor:1.13.0'
+
+    //Maps integration
+    compile 'com.google.android.gms:play-services-maps:11.4.2'
 }

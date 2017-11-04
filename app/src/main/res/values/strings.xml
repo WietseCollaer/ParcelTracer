@@ -6,6 +6,9 @@
     <string name="tracking_id">Tracking code</string>
     <string name="category_prompt">Kies een categorie</string>
     <string name="courier_prompt">Postorderbedrijf</string>
+    <string name="name_required">Naam is een verplicht veld.</string>
+    <string name="trackingid_required">Tracking Id is een verplicht veld.</string>
+    <string name="parcel_saved">Pakketje is opgeslagen.</string>
 
     <string-array name="categories">
         <item>PC en Mobile</item>

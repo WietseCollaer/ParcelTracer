@@ -7,8 +7,9 @@
     android:background="@android:color/darker_gray"
     tools:context="com.example.gebruiker.parceltracer.view.activities.DetailsActivity">
 
-    <TextView
-        android:id="@+id/details_parcel_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:id="@+id/map"/>
 </FrameLayout>

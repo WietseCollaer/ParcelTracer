@@ -1,5 +1,6 @@
 package com.example.gebruiker.parceltracer.view.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.ArrayRes;
 import android.support.annotation.NonNull;
@@ -11,10 +12,18 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gebruiker.parceltracer.App;
 import com.example.gebruiker.parceltracer.R;
 import com.example.gebruiker.parceltracer.api.repositories.TrackingRepository;
+import com.example.gebruiker.parceltracer.model.AftershipResource;
+import com.example.gebruiker.parceltracer.model.Tracking;
+import com.example.gebruiker.parceltracer.view.activities.HomeActivity;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -41,6 +50,9 @@ public class InputFragment extends Fragment {
 
     @BindView(R.id.parcel_input_courier)
     Spinner courierSelection;
+
+    @BindView(R.id.parcel_input_error)
+    TextView errorTextView;
 
     public InputFragment() {
         super();
@@ -73,6 +85,35 @@ public class InputFragment extends Fragment {
 
     @OnClick(R.id.add_parcel_save_button)
     public void saveParcel(){
+        if(isEditTextFieldEmpty(nameTextField)){
+            setError(getString(R.string.name_required));
+        } else if(isEditTextFieldEmpty(trackinIdTextField)){
+            setError(getString(R.string.trackingid_required));
+        }
+        else{
+            Tracking trackingToAdd = getTrackingFromInput();
+            repository.addTracking(new AftershipResource(trackingToAdd));
+            Toast.makeText(getContext(), getString(R.string.parcel_saved), Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getActivity(), HomeActivity.class));
+        }
+    }
 
+    private Tracking getTrackingFromInput() {
+        String title = nameTextField.getText().toString().trim();
+        String courier = courierSelection.getSelectedItem().toString().toLowerCase();
+        String trackingId = trackinIdTextField.getText().toString().trim();
+        String category = categorySelection.getSelectedItem().toString().toLowerCase();
+        Map<String, String> customFields = new HashMap<>();
+        customFields.put("category", category);
+
+        return new Tracking(title, courier, trackingId, customFields);
+    }
+
+    private void setError(String errorMessage) {
+        errorTextView.setText(errorMessage);
+    }
+
+    private boolean isEditTextFieldEmpty(EditText editTextToCheck) {
+        return editTextToCheck.getText().toString().trim().equals("");
     }
 }
