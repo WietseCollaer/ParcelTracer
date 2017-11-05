@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parcel_list_item_cardview"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="230dp"
     android:layout_gravity="center"
 
     android:layout_margin="10dp"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:adjustViewBounds="true"
-        android:scaleType="centerInside"
+        android:scaleType="centerCrop"
         app:srcCompat="@mipmap/mobile_and_pc" />
 
     <LinearLayout

@@ -11,11 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.gebruiker.parceltracer.R;
+import com.example.gebruiker.parceltracer.api.repositories.TrackingRepository;
 import com.example.gebruiker.parceltracer.model.Tracking;
 import com.example.gebruiker.parceltracer.view.activities.DetailsActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -70,6 +73,10 @@ public class ParcelListAdapter extends ArrayAdapter<Tracking> {
             Intent intent = new Intent(view.getContext(), DetailsActivity.class)
                     .putExtra("TrackingId", id);
             view.getContext().startActivity(intent);
+        }
+
+        @OnClick(R.id.remove_item_button)
+        void removeItem(){
         }
     }
 }

@@ -6,6 +6,7 @@ import com.example.gebruiker.parceltracer.dagger.modules.AppModule;
 import com.example.gebruiker.parceltracer.dagger.modules.NetModule;
 import com.example.gebruiker.parceltracer.view.activities.DetailsActivity;
 import com.example.gebruiker.parceltracer.view.activities.HomeActivity;
+import com.example.gebruiker.parceltracer.view.adapters.ParcelListAdapter;
 import com.example.gebruiker.parceltracer.view.fragments.InputFragment;
 import com.example.gebruiker.parceltracer.view.fragments.ParcelOverviewFragment;
 
@@ -21,4 +22,5 @@ public interface NetComponent {
     void inject(ParcelOverviewFragment fragment);
     void inject(InputFragment fragment);
     void inject(DetailsActivity detailsActivity);
+    void inject(ParcelListAdapter parcelListAdapter);
 }

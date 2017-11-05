@@ -7,5 +7,5 @@
     <color name="Color_Title">#dd000000</color>
     <color name="card_text_background">#e0ffffff</color>
     <color name="app_background">#ccc</color>
-
+    <color name="map_line_color">#c5179ef9</color>
 </resources>

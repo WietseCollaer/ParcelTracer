@@ -1,6 +1,9 @@
 package com.example.gebruiker.parceltracer.view.activities;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
+import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,10 +16,17 @@ import com.example.gebruiker.parceltracer.api.repositories.TrackingRepository;
 import com.example.gebruiker.parceltracer.model.Checkpoint;
 import com.example.gebruiker.parceltracer.model.Tracking;
 import com.example.gebruiker.parceltracer.view.adapters.CheckpointListAdapter;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -28,6 +38,7 @@ public class DetailsActivity extends ActionBarActivity implements OnMapReadyCall
     private String trackingId;
     private List<Checkpoint> checkpoints;
     private CheckpointListAdapter adapter;
+    public final String LOG_TAG = DetailsActivity.class.getSimpleName();
 
     @Inject
     TrackingRepository repository;
@@ -63,7 +74,7 @@ public class DetailsActivity extends ActionBarActivity implements OnMapReadyCall
 
         checkpoints = repository.getCheckpointsById(trackingId);
 
-        if(checkpoints == null){
+        if(checkpoints.isEmpty()){
             pendingTextView.setText(getString(R.string.pending_text));
         }
         else {
@@ -84,6 +95,69 @@ public class DetailsActivity extends ActionBarActivity implements OnMapReadyCall
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        Polyline parcelRoute = googleMap.addPolyline(new PolylineOptions()
+                .clickable(false)
+                .add(getLocations()));
 
+        parcelRoute.setColor(getResources().getColor(R.color.map_line_color));
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(getCoordinatesOfLocation(), 4));
+
+    }
+
+    private LatLng getCoordinatesOfLocation() {
+        Geocoder geocoder = new Geocoder(getApplicationContext());
+        List<Address> result;
+        try{
+            Checkpoint last = checkpoints.get(checkpoints.size()-1);
+            if(hasALocation(last)){
+                result = geocoder.getFromLocationName(last.getLocation(), 1);
+                if(isLocationFound(result)){
+                    Address address = result.get(0);
+                    return new LatLng(address.getLatitude(), address.getLongitude());
+                }
+            }
+            else{
+                last = checkpoints.get(checkpoints.size()-2);
+                result = geocoder.getFromLocationName(last.getLocation(), 1);
+                if(isLocationFound(result)){
+                    Address address = result.get(0);
+                    return new LatLng(address.getLatitude(), address.getLongitude());
+                }
+            }
+        }
+        catch (IOException ex){
+            Log.e(LOG_TAG, ex.getMessage());
+        }
+        //Locatie brussel
+        return new LatLng(50.8503463, 4.3517211);
+    }
+
+    private LatLng[] getLocations() {
+        List<LatLng> coordinates = new ArrayList<>();
+        Geocoder geocoder = new Geocoder(getApplicationContext());
+        List<Address> result;
+        for (Checkpoint checkpoint : checkpoints) {
+            try {
+                if(hasALocation(checkpoint)) {
+                    result = geocoder.getFromLocationName(checkpoint.getLocation(), 1);
+                    if (isLocationFound(result)){
+                        Address address = result.get(0);
+                        coordinates.add(new LatLng(address.getLatitude(), address.getLongitude()));
+                    }
+                }
+            }
+            catch (IOException ex){
+                Log.e(LOG_TAG, ex.getMessage());
+            }
+        }
+        return coordinates.toArray(new LatLng[coordinates.size()]);
+    }
+
+    private boolean isLocationFound(List<Address> result) {
+        return result != null && !result.isEmpty();
+    }
+
+    private boolean hasALocation(Checkpoint checkpoint) {
+        return checkpoint.getLocation() != null && !checkpoint.getLocation().isEmpty();
     }
 }
