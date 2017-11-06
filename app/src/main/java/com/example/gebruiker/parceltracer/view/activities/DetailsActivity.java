@@ -95,16 +95,18 @@ public class DetailsActivity extends ActionBarActivity implements OnMapReadyCall
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Polyline parcelRoute = googleMap.addPolyline(new PolylineOptions()
-                .clickable(false)
-                .add(getLocations()));
+        if(!checkpoints.isEmpty()) {
+            Polyline parcelRoute = googleMap.addPolyline(new PolylineOptions()
+                    .clickable(false)
+                    .add(getLocations()));
 
-        parcelRoute.setColor(getResources().getColor(R.color.map_line_color));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(getCoordinatesOfLocation(), 4));
-
+            parcelRoute.setColor(getResources().getColor(R.color.map_line_color));
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(getCoordinatesOfLocation(), 4));
+        }
     }
 
     private LatLng getCoordinatesOfLocation() {
+        //TODO if pending => crash
         Geocoder geocoder = new Geocoder(getApplicationContext());
         List<Address> result;
         try{

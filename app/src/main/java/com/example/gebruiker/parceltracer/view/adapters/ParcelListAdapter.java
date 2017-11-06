@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.gebruiker.parceltracer.App;
 import com.example.gebruiker.parceltracer.R;
 import com.example.gebruiker.parceltracer.api.repositories.TrackingRepository;
 import com.example.gebruiker.parceltracer.model.Tracking;
@@ -27,9 +29,15 @@ import butterknife.OnClick;
 public class ParcelListAdapter extends ArrayAdapter<Tracking> {
     static final String LOG_TAG = ParcelItemHolder.class.getSimpleName();
     private LayoutInflater inflater;
+    List<Tracking> parcels;
+
+    @Inject
+    TrackingRepository repository;
 
     public ParcelListAdapter(Context context, List<Tracking> parcels){
         super(context, 0, parcels);
+        this.parcels = parcels;
+        ((App)context.getApplicationContext()).getNetComponent().inject(this);
     }
 
     @NonNull
@@ -51,16 +59,28 @@ public class ParcelListAdapter extends ArrayAdapter<Tracking> {
         itemHolder.itemName.setText(tracking.getTitle());
         itemHolder.itemStatus.setText(tracking.getTag());
         itemHolder.id = tracking.getId();
+        itemHolder.removeButton.setTag(position);
+
 
         return convertView;
     }
 
-    static class ParcelItemHolder {
+    public void deleteItem(String id, int position){
+        repository.deleteTrackingById(id);
+        parcels.remove(position);
+        notifyDataSetChanged();
+
+    }
+
+    class ParcelItemHolder {
         @BindView(R.id.parcel_list_item_itemName)
         TextView itemName;
 
         @BindView(R.id.parcel_list_item_itemStatus)
         TextView itemStatus;
+
+        @BindView(R.id.remove_item_button)
+        Button removeButton;
 
         String id;
 
@@ -76,7 +96,8 @@ public class ParcelListAdapter extends ArrayAdapter<Tracking> {
         }
 
         @OnClick(R.id.remove_item_button)
-        void removeItem(){
+        void deleteButtonClick(View view){
+            deleteItem(id, (Integer) view.getTag());
         }
     }
 }
