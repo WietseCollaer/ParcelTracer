@@ -17,8 +17,8 @@ import android.widget.Toast;
 
 import com.example.gebruiker.parceltracer.App;
 import com.example.gebruiker.parceltracer.R;
-import com.example.gebruiker.parceltracer.api.repositories.CourierRepository;
-import com.example.gebruiker.parceltracer.api.repositories.TrackingRepository;
+import com.example.gebruiker.parceltracer.data.repositories.CourierRepository;
+import com.example.gebruiker.parceltracer.data.repositories.TrackingRepository;
 import com.example.gebruiker.parceltracer.model.AftershipResource;
 import com.example.gebruiker.parceltracer.model.Courier;
 import com.example.gebruiker.parceltracer.model.Tracking;

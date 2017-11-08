@@ -5,7 +5,7 @@ import android.app.Application;
 import com.example.gebruiker.parceltracer.dagger.components.DaggerNetComponent;
 import com.example.gebruiker.parceltracer.dagger.components.NetComponent;
 import com.example.gebruiker.parceltracer.dagger.modules.AppModule;
-import com.example.gebruiker.parceltracer.dagger.modules.NetModule;
+import com.example.gebruiker.parceltracer.dagger.modules.DataModule;
 
 public class App extends Application {
     private final String baseUrl = "https://api.aftership.com/v4/";
@@ -19,7 +19,7 @@ public class App extends Application {
 
         netComponent = DaggerNetComponent.builder()
                 .appModule(new AppModule(this))
-                .netModule(new NetModule(baseUrl, apiKey))
+                .netModule(new DataModule(baseUrl, apiKey))
                 .build();
     }
 

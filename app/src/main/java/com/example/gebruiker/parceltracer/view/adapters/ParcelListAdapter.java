@@ -13,11 +13,10 @@ import android.widget.TextView;
 
 import com.example.gebruiker.parceltracer.App;
 import com.example.gebruiker.parceltracer.R;
-import com.example.gebruiker.parceltracer.api.repositories.TrackingRepository;
+import com.example.gebruiker.parceltracer.data.repositories.TrackingRepository;
 import com.example.gebruiker.parceltracer.model.Tracking;
 import com.example.gebruiker.parceltracer.view.activities.DetailsActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;

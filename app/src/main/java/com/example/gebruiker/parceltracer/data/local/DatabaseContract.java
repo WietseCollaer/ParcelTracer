@@ -1,4 +1,4 @@
-package com.example.gebruiker.parceltracer.data;
+package com.example.gebruiker.parceltracer.data.local;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;

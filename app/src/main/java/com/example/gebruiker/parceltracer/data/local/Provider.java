@@ -1,4 +1,4 @@
-package com.example.gebruiker.parceltracer.data;
+package com.example.gebruiker.parceltracer.data.local;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -8,9 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
 import io.reactivex.annotations.Nullable;
-
-import com.example.gebruiker.parceltracer.data.DatabaseContract.TrackingEntry;
-import com.example.gebruiker.parceltracer.data.DatabaseContract.CheckpointEntry;
 
 public class Provider extends ContentProvider {
     private static final int TRACKING = 100;
@@ -41,9 +38,9 @@ public class Provider extends ContentProvider {
         final int match = sUriMatcher.match(uri);
         switch (match) {
             case TRACKING:
-                return TrackingEntry.CONTENT_TYPE;
+                return DatabaseContract.TrackingEntry.CONTENT_TYPE;
             case CHECKPOINT:
-                return CheckpointEntry.CONTENT_TYPE;
+                return DatabaseContract.CheckpointEntry.CONTENT_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
         }
@@ -57,7 +54,7 @@ public class Provider extends ContentProvider {
         switch (sUriMatcher.match(uri)) {
             case TRACKING:
                 retCursor = mDbHelper.getReadableDatabase().query(
-                        TrackingEntry.TABLE_NAME,
+                        DatabaseContract.TrackingEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -68,7 +65,7 @@ public class Provider extends ContentProvider {
                 break;
             case CHECKPOINT:
                 retCursor = mDbHelper.getReadableDatabase().query(
-                        CheckpointEntry.TABLE_NAME,
+                        DatabaseContract.CheckpointEntry.TABLE_NAME,
                         projection,
                         selection,
                         selectionArgs,
@@ -92,17 +89,17 @@ public class Provider extends ContentProvider {
 
         switch (sUriMatcher.match(uri)) {
             case TRACKING: {
-                long _id = db.insert(TrackingEntry.TABLE_NAME, null, values);
+                long _id = db.insert(DatabaseContract.TrackingEntry.TABLE_NAME, null, values);
                 if (_id > 0)
-                    returnUri = TrackingEntry.buildTrackingUri(_id);
+                    returnUri = DatabaseContract.TrackingEntry.buildTrackingUri(_id);
                 else
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 break;
             }
             case CHECKPOINT: {
-                long _id = db.insert(CheckpointEntry.TABLE_NAME, null, values);
+                long _id = db.insert(DatabaseContract.CheckpointEntry.TABLE_NAME, null, values);
                 if (_id > 0)
-                    returnUri = CheckpointEntry.buildCheckpointUri(_id);
+                    returnUri = DatabaseContract.CheckpointEntry.buildCheckpointUri(_id);
                 else
                     throw new android.database.SQLException("Failed to insert row into " + uri);
                 break;
@@ -122,10 +119,10 @@ public class Provider extends ContentProvider {
 
         switch (sUriMatcher.match(uri)) {
             case TRACKING:
-                rowsDeleted = db.delete(TrackingEntry.TABLE_NAME, selection, selectionArgs);
+                rowsDeleted = db.delete(DatabaseContract.TrackingEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             case CHECKPOINT:
-                rowsDeleted = db.delete(CheckpointEntry.TABLE_NAME, selection, selectionArgs);
+                rowsDeleted = db.delete(DatabaseContract.CheckpointEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);
@@ -143,10 +140,10 @@ public class Provider extends ContentProvider {
 
         switch (sUriMatcher.match(uri)) {
             case TRACKING:
-                rowsUpdated = db.update(TrackingEntry.TABLE_NAME, values, selection, selectionArgs);
+                rowsUpdated = db.update(DatabaseContract.TrackingEntry.TABLE_NAME, values, selection, selectionArgs);
                 break;
             case CHECKPOINT:
-                rowsUpdated = db.update(TrackingEntry.TABLE_NAME, values, selection, selectionArgs);
+                rowsUpdated = db.update(DatabaseContract.TrackingEntry.TABLE_NAME, values, selection, selectionArgs);
                 break;
             default:
                 throw new UnsupportedOperationException("Unknown uri: " + uri);

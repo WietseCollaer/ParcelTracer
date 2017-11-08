@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">ParcelTracer</string>
-    <string name="info_text">Hier kan u een pakket toevoegen. Uit het trackingnummer zal de app het juiste postbedrijf halen.         Als naam kan u kiezen wat voor u het duidelijkste is om dit pakketje te herkennen.</string>
+    <string name="info_text">Hier kan u een pakket toevoegen. Als naam kan u kiezen wat voor u het duidelijkste is om dit pakketje te herkennen.</string>
     <string name="input_naam">Naam</string>
     <string name="menu_refresh">Ververs gegevens</string>
     <string name="tracking_id">Tracking code</string>

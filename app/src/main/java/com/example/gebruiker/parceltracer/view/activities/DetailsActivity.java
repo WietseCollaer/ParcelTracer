@@ -3,7 +3,6 @@ package com.example.gebruiker.parceltracer.view.activities;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
-import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.gebruiker.parceltracer.App;
 import com.example.gebruiker.parceltracer.R;
-import com.example.gebruiker.parceltracer.api.repositories.TrackingRepository;
+import com.example.gebruiker.parceltracer.data.repositories.TrackingRepository;
 import com.example.gebruiker.parceltracer.model.Checkpoint;
 import com.example.gebruiker.parceltracer.model.Tracking;
 import com.example.gebruiker.parceltracer.view.adapters.CheckpointListAdapter;
@@ -26,7 +25,6 @@ import com.google.android.gms.maps.model.PolylineOptions;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -106,7 +104,6 @@ public class DetailsActivity extends ActionBarActivity implements OnMapReadyCall
     }
 
     private LatLng getCoordinatesOfLocation() {
-        //TODO if pending => crash
         Geocoder geocoder = new Geocoder(getApplicationContext());
         List<Address> result;
         try{

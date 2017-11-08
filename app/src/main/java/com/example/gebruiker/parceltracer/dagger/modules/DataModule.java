@@ -4,10 +4,12 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.example.gebruiker.parceltracer.api.repositories.CourierRepository;
-import com.example.gebruiker.parceltracer.api.repositories.TrackingRepository;
-import com.example.gebruiker.parceltracer.api.services.CourierService;
-import com.example.gebruiker.parceltracer.api.services.TrackingService;
+import com.example.gebruiker.parceltracer.data.remote.datasources.RemoteCourierDataSource;
+import com.example.gebruiker.parceltracer.data.remote.datasources.RemoteTrackingDataSource;
+import com.example.gebruiker.parceltracer.data.repositories.CourierRepository;
+import com.example.gebruiker.parceltracer.data.repositories.TrackingRepository;
+import com.example.gebruiker.parceltracer.data.remote.services.CourierService;
+import com.example.gebruiker.parceltracer.data.remote.services.TrackingService;
 import com.example.gebruiker.parceltracer.dagger.utils.DataDeserializer;
 import com.example.gebruiker.parceltracer.model.AftershipResource;
 import com.google.gson.Gson;
@@ -26,11 +28,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
-public class NetModule {
+public class DataModule {
     private String baseUrl;
     private String apiKey;
 
-    public NetModule(String baseUrl, String apiKey) {
+    public DataModule(String baseUrl, String apiKey) {
         this.baseUrl = baseUrl;
         this.apiKey = apiKey;
     }
@@ -94,8 +96,14 @@ public class NetModule {
 
     @Provides
     @Singleton
-    TrackingRepository provideTrackingRepository(TrackingService service) {
-        return new TrackingRepository(service);
+    RemoteTrackingDataSource provideRemoteTrackingDataSource(TrackingService service) {
+        return new RemoteTrackingDataSource(service);
+    }
+
+    @Provides
+    @Singleton
+    TrackingRepository provideTrackingRepository(RemoteTrackingDataSource remoteDataSource) {
+        return new TrackingRepository(remoteDataSource);
     }
 
     @Provides
@@ -106,7 +114,13 @@ public class NetModule {
 
     @Provides
     @Singleton
-    CourierRepository provideCourierRepository(CourierService service) {
-        return new CourierRepository(service);
+    RemoteCourierDataSource provideRemoteCourierDataSource(CourierService service) {
+        return new RemoteCourierDataSource(service);
+    }
+
+    @Provides
+    @Singleton
+    CourierRepository provideCourierRepository(RemoteCourierDataSource remoteDataSource) {
+        return new CourierRepository(remoteDataSource);
     }
 }
