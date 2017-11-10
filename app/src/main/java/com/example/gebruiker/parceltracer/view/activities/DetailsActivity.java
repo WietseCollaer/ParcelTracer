@@ -57,7 +57,7 @@ public class DetailsActivity extends ActionBarActivity implements OnMapReadyCall
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
-        ((App)this.getApplication()).getNetComponent().inject(this);
+        ((App)this.getApplication()).getDataComponent().inject(this);
         ButterKnife.bind(this);
 
         Intent intent = getIntent();

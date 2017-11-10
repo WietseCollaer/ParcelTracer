@@ -38,7 +38,7 @@ public class ParcelListAdapter extends ArrayAdapter<Tracking> {
     public ParcelListAdapter(Context context, List<Tracking> parcels){
         super(context, 0, parcels);
         this.parcels = parcels;
-        ((App)context.getApplicationContext()).getNetComponent().inject(this);
+        ((App)context.getApplicationContext()).getDataComponent().inject(this);
     }
 
     @NonNull

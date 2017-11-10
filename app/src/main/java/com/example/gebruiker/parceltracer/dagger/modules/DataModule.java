@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.example.gebruiker.parceltracer.data.local.datasources.LocalTrackingDataSource;
 import com.example.gebruiker.parceltracer.data.remote.datasources.RemoteCourierDataSource;
 import com.example.gebruiker.parceltracer.data.remote.datasources.RemoteTrackingDataSource;
 import com.example.gebruiker.parceltracer.data.repositories.CourierRepository;
@@ -28,11 +29,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
-public class NetModule {
+public class DataModule {
     private String baseUrl;
     private String apiKey;
 
-    public NetModule(String baseUrl, String apiKey) {
+    public DataModule(String baseUrl, String apiKey) {
         this.baseUrl = baseUrl;
         this.apiKey = apiKey;
     }
@@ -96,14 +97,21 @@ public class NetModule {
 
     @Provides
     @Singleton
+    LocalTrackingDataSource provideLocalTrackingDataSource() {
+        return new LocalTrackingDataSource();
+    }
+
+    @Provides
+    @Singleton
     RemoteTrackingDataSource provideRemoteTrackingDataSource(TrackingService service) {
         return new RemoteTrackingDataSource(service);
     }
 
     @Provides
     @Singleton
-    TrackingRepository provideTrackingRepository(RemoteTrackingDataSource remoteDataSource) {
-        return new TrackingRepository(remoteDataSource);
+    TrackingRepository provideTrackingRepository(LocalTrackingDataSource localDataSource,
+                                                 RemoteTrackingDataSource remoteDataSource) {
+        return new TrackingRepository(localDataSource, remoteDataSource);
     }
 
     @Provides

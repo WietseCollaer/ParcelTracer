@@ -1,13 +1,24 @@
 package com.example.gebruiker.parceltracer.model;
 
+import com.example.gebruiker.parceltracer.data.local.database.Database;
+import com.example.gebruiker.parceltracer.data.utils.CheckpointListConverter;
+import com.example.gebruiker.parceltracer.data.utils.CustomFieldsConverter;
+import com.example.gebruiker.parceltracer.data.utils.StringListConverter;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.PrimaryKey;
+import com.raizlabs.android.dbflow.annotation.Table;
+import com.raizlabs.android.dbflow.structure.BaseModel;
 
 import java.util.List;
 import java.util.Map;
 
-public class Tracking {
+@Table(database = Database.class)
+public class Tracking extends BaseModel {
     /** Identifier of the tracking in the Aftership system */
+    @Column
+    @PrimaryKey
     @SerializedName("id")
     @Expose(serialize = false)
     private String id;
@@ -31,6 +42,7 @@ public class Tracking {
      * or tracking number with invalid tracking number format will
      * not be accepted.
      */
+    @Column
     @SerializedName("tracking_number")
     @Expose
     private String trackingNumber;
@@ -39,6 +51,7 @@ public class Tracking {
      * Aftership will automatically detect the courier based on the
      * tracking number format and your selected couriers.
      */
+    @Column
     @SerializedName("slug")
     @Expose
     private String slug;
@@ -46,14 +59,16 @@ public class Tracking {
     /** Whether or not Aftership will continue tracking the shipments.
      * Value is 'false' when status is 'Delivered' or 'Expired'.
      */
+    @Column
     @SerializedName("active")
     @Expose(serialize = false)
     private boolean active;
 
     /** Tracking to create push notification */
+    @Column(typeConverter = StringListConverter.class)
     @SerializedName("android")
     @Expose(serialize = false)
-    private List<String> android;
+    private List android;
 
     /** Custom fields that accept any TEXT STRING */
     @SerializedName("custom_fields")
@@ -61,6 +76,7 @@ public class Tracking {
     private Map<String, String> customFields;
 
     /** Customer name of the tracking */
+    @Column
     @SerializedName("customer_name")
     @Expose(serialize = false)
     private String customerName;
@@ -74,16 +90,19 @@ public class Tracking {
      * If you use postal service to send international shipments, Aftership will automatically
      * get tracking results at the destination courier as well (e.g. USPS for USA).
      */
+    @Column
     @SerializedName("destination_country_iso3")
     @Expose
     private String destinationCountryISO3;
 
     /** Email address(es) to receive email notifications, if several they will be separated by commas */
+    @Column(typeConverter = StringListConverter.class)
     @SerializedName("emails")
     @Expose
-    private List<String> emails;
+    private List emails;
 
     /** Expected delivery date (if any) */
+    @Column
     @SerializedName("expected_delivery")
     @Expose(serialize = false)
     private String expectedDelivery;
@@ -94,6 +113,7 @@ public class Tracking {
     private List<String> ios;
 
     /** remarks on the tracking */
+    @Column
     @SerializedName("note")
     @Expose(serialize = false)
     private String note;
@@ -109,41 +129,49 @@ public class Tracking {
     private String orderIDPath;
 
     /** Country ISO Alpha-3 (three letters) to specify the origin country of the tracking */
+    @Column
     @SerializedName("origin_country_iso3")
     @Expose
     private String originCountryISO3;
 
     /** Number of packages under the tracking */
+    @Column
     @SerializedName("shipment_package_count")
     @Expose(serialize = false)
     private int shipmentPackageCount;
 
     /** Date when the shipment has been collected by the carrier */
+    @Column
     @SerializedName("shipment_pickup_date")
     @Expose(serialize = false)
     private String shipmentPickupDate;
 
     /** Date when the shipment has been delivered */
+    @Column
     @SerializedName("shipment_delivery_date")
     @Expose(serialize = false)
     private String shipmentDeliveryDate;
 
     /** Shipment type provided by carrier (if any) */
+    @Column
     @SerializedName("shipment_type")
     @Expose(serialize = false)
     private String shipmentType;
 
     /** Shipment weight provided by carrier (if any) */
+    @Column
     @SerializedName("shipment_weight")
     @Expose(serialize = false)
     private String shipmentWeight;
 
     /** Shipment weight unit provided by carrier (if any) */
+    @Column
     @SerializedName("shipment_weight_unit")
     @Expose(serialize = false)
     private String shipmentWeightUnit;
 
     /** Signed by information for delivered shipment (if any) */
+    @Column
     @SerializedName("signed_by")
     @Expose(serialize = false)
     private String signedBy;
@@ -151,16 +179,19 @@ public class Tracking {
     /** Phone number(s) to receive sms notifications, if several they will be separated by commas.
      * Enter country code before each phone number.
      */
+    @Column(typeConverter = StringListConverter.class)
     @SerializedName("smses")
     @Expose
-    private List<String> smses;
+    private List smses;
 
     /** Source of how this tracking is added */
+    @Column
     @SerializedName("source")
     @Expose(serialize = false)
     private String source;
 
     /** Current status of tracking */
+    @Column
     @SerializedName("tag")
     @Expose(serialize = false)
     private String tag;
@@ -171,16 +202,19 @@ public class Tracking {
     private String subtag;
 
     /** Title of the tracking (Default value: tracking number) */
+    @Column
     @SerializedName("title")
     @Expose
     private String title;
 
     /** Number of attempts Aftership tracks at courier's system */
+    @Column
     @SerializedName("tracked_count")
     @Expose(serialize = false)
     private int trackedCount;
 
     /** When last mile tracking is supported */
+    @Column
     @SerializedName("last_mile_tracking_supported")
     @Expose(serialize = false)
     private String lastMileTrackingSupported;
@@ -221,6 +255,8 @@ public class Tracking {
     private String trackingShipDate;
 
     public static final String CATEGORY_KEY = "category";
+
+    public Tracking() {}
 
     public Tracking(String title, String slug, String trackingNumber, Map<String,String> customFields) {
         this.title = title;

@@ -55,6 +55,11 @@ dependencies {
     provided 'javax.annotation:jsr250-api:1.0'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.12'
 
+    //DBFlow
+    compile "com.github.Raizlabs.DBFlow:dbflow:4.0.3"
+    compile "com.github.Raizlabs.DBFlow:dbflow-core:4.0.3"
+    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:4.0.3"
+
     //Maps integration
     compile 'com.google.android.gms:play-services-maps:11.4.2'
 }

@@ -46,7 +46,7 @@ public class ParcelOverviewFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((App)getActivity().getApplication()).getNetComponent().inject(this);
+        ((App)getActivity().getApplication()).getDataComponent().inject(this);
     }
 
     @Override

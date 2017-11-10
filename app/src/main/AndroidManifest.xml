@@ -24,10 +24,6 @@
             </intent-filter>
         </activity>
 
-        <provider
-            android:name=".data.local.Provider"
-            android:authorities="com.example.gebruiker.parceltracer" />
-
         <activity android:name=".view.activities.DetailsActivity" />
         <activity android:name=".view.activities.AddParcelActivity" />
         <meta-data

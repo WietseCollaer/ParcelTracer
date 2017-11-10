@@ -1,5 +1,6 @@
 package com.example.gebruiker.parceltracer.data.repositories;
 
+import com.example.gebruiker.parceltracer.data.local.datasources.LocalTrackingDataSource;
 import com.example.gebruiker.parceltracer.data.remote.datasources.RemoteTrackingDataSource;
 import com.example.gebruiker.parceltracer.model.AftershipResource;
 import com.example.gebruiker.parceltracer.model.Checkpoint;
@@ -13,10 +14,13 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 
 public class TrackingRepository {
+    private LocalTrackingDataSource localDataSource;
     private RemoteTrackingDataSource remoteDataSource;
 
     @Inject
-    public TrackingRepository(RemoteTrackingDataSource remoteDataSource) {
+    public TrackingRepository(LocalTrackingDataSource localDataSource,
+                              RemoteTrackingDataSource remoteDataSource) {
+        this.localDataSource = localDataSource;
         this.remoteDataSource = remoteDataSource;
     }
 
