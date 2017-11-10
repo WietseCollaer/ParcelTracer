@@ -8,7 +8,7 @@
     android:layout_gravity="center"
 
     android:layout_margin="10dp"
-    android:background="@mipmap/mobile_and_pc"
+    android:background="@mipmap/computer_en_netwerk"
     app:cardBackgroundColor="@android:color/white"
     app:cardCornerRadius="2dp"
     app:cardElevation="4dp">
@@ -20,8 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:adjustViewBounds="true"
-        android:scaleType="centerInside"
-        app:srcCompat="@mipmap/mobile_and_pc" />
+        android:scaleType="centerInside" />
 
     <LinearLayout
         android:layout_width="match_parent"

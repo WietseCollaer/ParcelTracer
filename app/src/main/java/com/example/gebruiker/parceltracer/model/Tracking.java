@@ -220,21 +220,13 @@ public class Tracking {
     @Expose(serialize = false)
     private String trackingShipDate;
 
-    /** Category of the package */
-    private String category;
+    public static final String CATEGORY_KEY = "category";
 
     public Tracking(String title, String slug, String trackingNumber, Map<String,String> customFields) {
         this.title = title;
         this.slug = slug;
         this.trackingNumber = trackingNumber;
         this.customFields = customFields;
-
-        if (customFields.get("Category") != null)
-            category = customFields.get("Category");
-        else if (customFields.get("category") != null)
-            category = customFields.get("category");
-        else
-            category = "";
     }
 
     public String getId() {

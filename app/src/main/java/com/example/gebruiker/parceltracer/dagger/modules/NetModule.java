@@ -28,11 +28,11 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
-public class DataModule {
+public class NetModule {
     private String baseUrl;
     private String apiKey;
 
-    public DataModule(String baseUrl, String apiKey) {
+    public NetModule(String baseUrl, String apiKey) {
         this.baseUrl = baseUrl;
         this.apiKey = apiKey;
     }

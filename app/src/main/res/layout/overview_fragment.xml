@@ -6,11 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/parcel_list"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="10dp"
-        android:paddingTop="10dp" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/no_parcels_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="5dp"
+            android:text="@string/no_parcels" />
+
+        <ListView
+            android:id="@+id/parcel_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="10dp"
+            android:paddingTop="10dp" />
+    </LinearLayout>
+
 </android.support.v4.widget.SwipeRefreshLayout>

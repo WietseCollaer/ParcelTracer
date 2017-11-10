@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gebruiker.parceltracer.App;
@@ -18,6 +19,7 @@ import com.example.gebruiker.parceltracer.model.Tracking;
 import com.example.gebruiker.parceltracer.view.activities.DetailsActivity;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -55,6 +57,7 @@ public class ParcelListAdapter extends ArrayAdapter<Tracking> {
             itemHolder = (ParcelItemHolder) convertView.getTag();
         }
         Log.d(LOG_TAG, "Hier geweest: " + tracking.getTitle());
+        itemHolder.categoryImage.setImageResource(getResourceId(tracking.getCustomFields()));
         itemHolder.itemName.setText(tracking.getTitle());
         itemHolder.itemStatus.setText(tracking.getTag());
         itemHolder.id = tracking.getId();
@@ -64,6 +67,11 @@ public class ParcelListAdapter extends ArrayAdapter<Tracking> {
         return convertView;
     }
 
+    private int getResourceId(Map<String, String> customFields) {
+        String category = customFields.get(Tracking.CATEGORY_KEY);
+        return getContext().getResources().getIdentifier(category, "mipmap", getContext().getPackageName());
+    }
+
     public void deleteItem(String id, int position){
         repository.deleteTrackingById(id);
         parcels.remove(position);
@@ -71,7 +79,14 @@ public class ParcelListAdapter extends ArrayAdapter<Tracking> {
 
     }
 
+    public List<Tracking> getParcels() {
+        return parcels;
+    }
+
     class ParcelItemHolder {
+        @BindView(R.id.category_image_view)
+        ImageView categoryImage;
+
         @BindView(R.id.parcel_list_item_itemName)
         TextView itemName;
 

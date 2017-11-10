@@ -13,9 +13,21 @@
     <string name="pending_text">Als er bij het pakketje pending blijft staan, dan betekent dit dat het
     trackingnummer dat u hebt opgegeven niet bekend is bij dit postbedrijf.</string>
 
+    <string name="no_parcels">Er zijn geen parcels om weer te geven. Voeg een parcel toe via de gele
+        knop onderaan. Als u reeds een parcel hebt toegevoegd, maar deze verschijnt nog niet, wacht
+        dan even tot het pakket verwerkt is door het systeem en ververs later nog eens.</string>
+
     <string-array name="categories">
-        <item>PC en Mobile</item>
-        <item>Huishoudtoestel</item>
+        <item>Telefonie en tablets</item>
+        <item>Computer en netwerk</item>
+        <item>Beeld en geluid</item>
+        <item>Witgoed en huishouden</item>
+        <item>Koken en wonen</item>
+        <item>Foto en video</item>
+        <item>Navigatie en reizen</item>
+        <item>Sport en verzorging</item>
+        <item>Tuin en klussen</item>
+        <item>Gaming en gadgets</item>
         <item>Andere</item>
     </string-array>
 

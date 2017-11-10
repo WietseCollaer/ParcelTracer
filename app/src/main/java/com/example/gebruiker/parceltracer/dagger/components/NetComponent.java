@@ -1,6 +1,6 @@
 package com.example.gebruiker.parceltracer.dagger.components;
 
-import com.example.gebruiker.parceltracer.dagger.modules.DataModule;
+import com.example.gebruiker.parceltracer.dagger.modules.NetModule;
 import com.example.gebruiker.parceltracer.data.remote.datasources.RemoteCourierDataSource;
 import com.example.gebruiker.parceltracer.data.remote.datasources.RemoteTrackingDataSource;
 import com.example.gebruiker.parceltracer.data.repositories.CourierRepository;
@@ -16,7 +16,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {AppModule.class, DataModule.class})
+@Component(modules = {AppModule.class, NetModule.class})
 public interface NetComponent {
     void inject(RemoteTrackingDataSource trackingDataSource);
     void inject(RemoteCourierDataSource courierDataSource);

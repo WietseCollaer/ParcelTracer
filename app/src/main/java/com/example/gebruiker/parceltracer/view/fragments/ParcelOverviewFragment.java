@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.gebruiker.parceltracer.App;
 import com.example.gebruiker.parceltracer.R;
@@ -30,6 +31,9 @@ public class ParcelOverviewFragment extends Fragment {
 
     @BindView(R.id.swiperefresh)
     SwipeRefreshLayout refreshLayout;
+
+    @BindView(R.id.no_parcels_textview)
+    TextView noParcels;
 
     @Inject
     public TrackingRepository repository;
@@ -59,13 +63,24 @@ public class ParcelOverviewFragment extends Fragment {
 
         adapter = new ParcelListAdapter(getContext(), getAllTrackings());
         adapter.setNotifyOnChange(true);
+        setTextViewVisibility();
         parcelList.setAdapter(adapter);
 
         return view;
     }
 
+    private void setTextViewVisibility() {
+        if(adapter.getParcels().isEmpty()){
+            noParcels.setVisibility(View.VISIBLE);
+        }
+        else{
+            noParcels.setVisibility(View.GONE);
+        }
+    }
+
     private void refreshContent() {
         adapter = new ParcelListAdapter(getContext(), getAllTrackings());
+        setTextViewVisibility();
         parcelList.setAdapter(adapter);
         refreshLayout.setRefreshing(false);
     }
