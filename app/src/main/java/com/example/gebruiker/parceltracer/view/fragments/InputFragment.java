@@ -122,7 +122,7 @@ public class InputFragment extends Fragment {
 
     private Tracking getTrackingFromInput() {
         String title = nameTextField.getText().toString().trim();
-        String courier = courierSelection.getSelectedItem().toString().toLowerCase();
+        String courier = courierSelection.getSelectedItem().toString().toLowerCase().replace(' ', '-');
         String trackingId = trackinIdTextField.getText().toString().trim();
         String category = categorySelection.getSelectedItem().toString().toLowerCase().replace(' ', '_');
         Map<String, String> customFields = new HashMap<>();

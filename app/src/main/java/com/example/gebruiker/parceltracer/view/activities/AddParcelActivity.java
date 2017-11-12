@@ -17,6 +17,4 @@ public class AddParcelActivity extends ActionBarActivity {
             getSupportFragmentManager().beginTransaction().add(R.id.input_fragment_container, new InputFragment()).commit();
         }
     }
-
-
 }
